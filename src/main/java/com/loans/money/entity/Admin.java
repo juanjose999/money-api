@@ -19,6 +19,6 @@ public class Admin {
     private int idadmin;
     private String fullnameadmin;
     private String passwordadmin;
-    @OneToMany(targetEntity = Clients.class,fetch = FetchType.LAZY, mappedBy = "admin")
-    private List<Clients> clientsList;
+    @OneToMany(targetEntity = Client.class,fetch = FetchType.LAZY, mappedBy = "admin")
+    private List<Client> clientList;
 }

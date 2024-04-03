@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Payments {
+public class Payment {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idPayment;
     private LocalDateTime datePayment;
-    @ManyToOne(targetEntity = Loans.class, fetch = FetchType.LAZY)
-    private Loans loan;
+    @ManyToOne(targetEntity = Loan.class, fetch = FetchType.LAZY)
+    private Loan loan;
     private double totalpayment;
     @ManyToOne(targetEntity = Bill.class)
     private Bill bill;

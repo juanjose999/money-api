@@ -19,6 +19,6 @@ import java.util.List;
 public class Bill {
     @Id
     private long idbill;
-    @OneToMany(targetEntity = Payments.class, fetch = FetchType.LAZY, mappedBy = "bill")
-    private List<Payments> datapayment;
+    @OneToMany(targetEntity = Payment.class, fetch = FetchType.LAZY, mappedBy = "bill")
+    private List<Payment> datapayment;
 }

@@ -13,15 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Clients {
+public class Client {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idclient;
     private String firstname;
     private String lastname;
     private String phoneNumber;
-    @OneToMany(targetEntity = Loans.class,fetch = FetchType.LAZY, mappedBy = "clientData")
-    private List<Loans> loanslist;
+    @OneToMany(targetEntity = Loan.class,fetch = FetchType.LAZY, mappedBy = "clientData")
+    private List<Loan> loanslist;
     @ManyToOne(targetEntity = Admin.class)
     private Admin admin;
 }

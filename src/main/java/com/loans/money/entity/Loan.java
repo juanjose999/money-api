@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -14,15 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Loans {
+public class Loan {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idloan;
-    @ManyToOne(targetEntity = Clients.class, fetch = FetchType.LAZY)
-    private Clients clientData;
+    @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
+    private Client clientData;
     private double amountmoney;
     private double interest;
     private boolean isactive;
-    @OneToMany(targetEntity = Payments.class, fetch = FetchType.LAZY, mappedBy = "loan")
-    private List<Payments> payment;
+    @OneToMany(targetEntity = Payment.class, fetch = FetchType.LAZY, mappedBy = "loan")
+    private List<Payment> payment;
 }
