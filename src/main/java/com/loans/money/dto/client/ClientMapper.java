@@ -36,7 +36,7 @@ public class ClientMapper {
         List<LoanResponseDto> list = new ArrayList<>();
         for(Loan l: loans){
             LoanResponseDto loanNew = new LoanResponseDto();
-            loanNew.setClient_data(l.getClient_data());
+            //loanNew.setClient_data(l.getClient_data());
             loanNew.setLoan(l.getLoan());
             loanNew.setDate_loan(l.getDate_loan());
             loanNew.setInterest(l.getInterest());

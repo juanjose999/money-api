@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class LoanResponseDto {
-    private Client client_data;
     private BigDecimal loan;
     private String date_loan;
     private double interest;
@@ -24,7 +23,6 @@ public class LoanResponseDto {
     private List<PaymentResponseDto> payments;
 
     public LoanResponseDto( BigDecimal loan, double interest, String date_loan) {
-        this.client_data = getClient_data();
         this.loan = loan;
         this.interest = interest;
         this.date_loan = date_loan;

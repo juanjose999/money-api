@@ -18,7 +18,7 @@ import static com.loans.money.entity.Role.ADMIN;
 @Entity
 public class Admin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id_admin;
     private String full_name;
     private String password_admin;

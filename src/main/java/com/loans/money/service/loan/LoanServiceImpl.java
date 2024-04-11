@@ -57,6 +57,7 @@ public class LoanServiceImpl implements LoanService{
     public LoanResponseDto saveLoan(LoanDto loanDto) {
         return LoanMapper.loanToLoanResponseDto(loanRepository.saveLoan(LoanMapper.loanDtoToLoan(loanDto)));
     }
+
     @Override
     public LoanResponseDto updateLoan(Long id, LoanDto loanDto) {
         return LoanMapper.loanToLoanResponseDto(loanRepository.updateLoan(id, LoanMapper.loanDtoToLoan(loanDto)));

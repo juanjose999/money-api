@@ -49,14 +49,13 @@ public class ClientRepositoryImpl implements ClientRepository{
         return clientsIncludes;
     }
 
-    @Override
-    public Client saveClient(Client client) {
-        return clientRepositoryJpa.save(client);
-    }
+//    @Override
+//    public Client saveClient(Client client) {
+//        return clientRepositoryJpa.save(client);
+//    }
 
     public Client saveClientWithLoan(Client client, Integer idAdmin){
-        Client savedClient = saveClient(client);
-        //recorror la lista de loans que trae cliente desde el reponse body
+        Client savedClient = clientRepositoryJpa.save(client);
         List<Loan> loans = new ArrayList<>();
         for (Loan lo : client.getLoans_list()){
             Loan save = loanRepository.saveLoan(lo);

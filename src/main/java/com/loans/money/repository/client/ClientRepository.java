@@ -11,7 +11,7 @@ public interface ClientRepository {
     Optional<Client> findClientById(Long id);
     Optional<List<Client>> findByFirst_nameOrLast_nameContaining(String keyword);
     List<Client>findAdminById(Integer idAdmin);
-    Client saveClient(Client client);
+//    Client saveClient(Client client);
     Client saveClientWithLoan(Client client, Integer idAdmin);
     Client updateClient(Long id, Client client);
     Boolean deleteClientById(Long id);
