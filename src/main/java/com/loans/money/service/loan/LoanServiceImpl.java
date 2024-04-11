@@ -20,54 +20,37 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class LoanServiceImpl implements LoanService{
     private final LoanRepository loanRepository;
     @Override
     public List<LoanResponseDto> allLoans() {
-        List<Loan> loanList = loanRepository.allLoans();
-        List<LoanResponseDto> loanResponseDto = new ArrayList<>();
-        for(Loan l : loanList){
-            LoanResponseDto loanNew = new LoanResponseDto();
-            loanNew.setLoan(l.getLoan());
-            loanNew.setDate_loan(l.getDate_loan());
-            loanNew.setInterest(l.getInterest());
-            loanNew.setDebt_interests_month(loanNew.getDebt_interests_month());
-            loanNew.setDebt_interests_month(l.getDebt_interests_month());
-            loanNew.setMonths_debt(l.getMonths_debt());
-            loanNew.setDebt_total(l.getDebt_total());
-            List<Payment> payments = l.getPayments();
-            List<PaymentResponseDto> pdto = new ArrayList<>();
-            for(Payment p : payments){
-                PaymentResponseDto paymentNew = PaymentMapper.paymentToPaymentResponseDto(p);
-                pdto.add(paymentNew);
-            }
-            loanNew.setPayments(pdto);
-            loanResponseDto.add(loanNew);
-        }
-        return loanResponseDto;
+        return loanRepository.allLoans().stream()
+                .map(this::mapToLoanResponseDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<LoanResponseDto> findLoanById(Long id) {
-        Loan l= loanRepository.findLoanById(id).get();
-        LoanResponseDto loanNew = new LoanResponseDto();
-        loanNew.setLoan(l.getLoan());
-        loanNew.setDate_loan(l.getDate_loan());
-        loanNew.setInterest(l.getInterest());
-        loanNew.setDebt_interests_month(loanNew.getDebt_interests_month());
-        loanNew.setDebt_interests_month(l.getDebt_interests_month());
-        loanNew.setMonths_debt(l.getMonths_debt());
-        loanNew.setDebt_total(l.getDebt_total());
-        List<Payment> payments = l.getPayments();
-        List<PaymentResponseDto> pdto = new ArrayList<>();
-        for(Payment p : payments){
-            PaymentResponseDto paymentNew = PaymentMapper.paymentToPaymentResponseDto(p);
-            pdto.add(paymentNew);
-        }
-        loanNew.setPayments(pdto);
-        return Optional.of(loanNew);
+        return loanRepository.findLoanById(id).map(this::mapToLoanResponseDto);
+    }
+
+    private LoanResponseDto mapToLoanResponseDto(Loan loan) {
+        LoanResponseDto loanResponseDto = new LoanResponseDto();
+        loanResponseDto.setLoan(loan.getLoan());
+        loanResponseDto.setDate_loan(loan.getDate_loan());
+        loanResponseDto.setInterest(loan.getInterest());
+        loanResponseDto.setDebt_interests_month(loan.getDebt_interests_month());
+        loanResponseDto.setMonths_debt(loan.getMonths_debt());
+        loanResponseDto.setDebt_total(loan.getDebt_total());
+        List<PaymentResponseDto> paymentResponseDtos = loan.getPayments().stream()
+                .map(PaymentMapper::paymentToPaymentResponseDto)
+                .collect(Collectors.toList());
+        loanResponseDto.setPayments(paymentResponseDtos);
+        return loanResponseDto;
     }
 
     @Override
