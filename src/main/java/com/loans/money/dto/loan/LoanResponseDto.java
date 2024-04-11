@@ -1,31 +1,18 @@
-package com.loans.money.entity;
+package com.loans.money.dto.loan;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import com.loans.money.dto.payment.PaymentResponseDto;
+import com.loans.money.entity.Client;
+import com.loans.money.entity.Payment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Loan {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id_loan;
-    @JsonBackReference
-    @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
+public class LoanResponseDto {
     private Client client_data;
     private BigDecimal loan;
     private String date_loan;
@@ -34,10 +21,9 @@ public class Loan {
     private Integer months_debt;
     private BigDecimal debt_total;
     private boolean is_active = true;
-    @OneToMany(targetEntity = Payment.class, fetch = FetchType.LAZY, mappedBy = "loan")
-    private List<Payment> payments;
+    private List<PaymentResponseDto> payments;
 
-    public Loan( BigDecimal loan, double interest, String date_loan) {
+    public LoanResponseDto( BigDecimal loan, double interest, String date_loan) {
         this.client_data = getClient_data();
         this.loan = loan;
         this.interest = interest;
