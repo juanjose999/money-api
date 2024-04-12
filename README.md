@@ -1,4 +1,6 @@
-# Sistema de Administración de Préstamos de Dinero
+# Bitacora de Administración de Préstamos de Dinero
+
+# requerimientos usuario
 
 - Agregar nuevos clientes al sistema.
 - Revisar una lista completa de clientes registrados.
@@ -28,5 +30,5 @@ Relaciones: Puede tener una relación de muchos a uno con la entidad de Cliente.
 Atributos: ID, monto del pago, fecha del pago, ID del préstamo asociado.
 Relaciones: Puede tener una relación de muchos a uno con la entidad de Préstamo.
 
-# Factyra pago:
+# Factura pago:
 Atributos: ID, tipo de informe, fecha de generación, detalles del informe (p. ej., ingresos por intereses, préstamos pendientes, pagos realizados, etc.).
