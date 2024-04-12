@@ -22,14 +22,14 @@ public class LoanResponseDto {
     private boolean is_active = true;
     private List<PaymentResponseDto> payments;
 
-    public LoanResponseDto( BigDecimal loan, double interest, String date_loan) {
+    public LoanResponseDto( BigDecimal loan, double interest, String date_loan,List<PaymentResponseDto> payments) {
         this.loan = loan;
         this.interest = interest;
         this.date_loan = date_loan;
         this.debt_interests_month = getDebt_interests_month();
         this.months_debt = getMonths_debt();
         this.debt_total = getDebt_total();
-        this.payments = getPayments();
+        this.payments = payments;
         this.is_active = true;
     }
 }

@@ -1,5 +1,6 @@
 package com.loans.money.dto.admin;
 
+import com.loans.money.dto.client.ClientResponseDto;
 import com.loans.money.entity.Admin;
 import com.loans.money.entity.Client;
 
@@ -14,7 +15,7 @@ public class AdminMapper {
         );
     }
 
-    public static AdminResponseDto adminToAdminResponseDto (Admin admin, List<Client> clientList){
+    public static AdminResponseDto adminToAdminResponseDto (Admin admin, List<ClientResponseDto> clientList){
         return new AdminResponseDto(
                 admin.getFull_name(),
                 clientList

@@ -1,5 +1,6 @@
 package com.loans.money.dto.admin;
 
+import com.loans.money.dto.client.ClientResponseDto;
 import com.loans.money.entity.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminResponseDto {
     private String full_name;
-    private  List<Client> client_list;
-    public AdminResponseDto(String full_name, List<Client> clientList) {
+    private  List<ClientResponseDto> client_list;
+    public AdminResponseDto(String full_name, List<ClientResponseDto> clientList) {
         this.full_name = full_name;
         this.client_list = clientList.isEmpty() ? new ArrayList<>():clientList;
     }
