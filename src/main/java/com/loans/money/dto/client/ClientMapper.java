@@ -34,7 +34,28 @@ public class ClientMapper {
         clientResponseDto.setPhone_number(client.getPhone_number());
         List<Loan> loans = client.getLoans_list();
         List<LoanResponseDto> list = new ArrayList<>();
-        loans.forEach(l -> list.add(LoanMapper.loanToLoanResponseDto(l)));
+        //loans.forEach(l -> list.add(LoanMapper.loanToLoanResponseDto(l)));
+        for (Loan l : loans){
+            LoanResponseDto loanNew = new LoanResponseDto();
+            loanNew.setLoan(l.getLoan());
+            loanNew.setDate_loan(l.getDate_loan());
+            loanNew.setInterest(l.getInterest());
+            loanNew.setMonths_debt(l.getMonths_debt());
+            loanNew.setDebt_interests_month(l.getDebt_interests_month());
+            loanNew.setDebt_total(l.getDebt_total());
+            List<PaymentResponseDto> paymentResponseDto = new ArrayList<>();
+            List<Payment> listPayment = l.getPayments();
+            for(Payment p : listPayment){
+                PaymentResponseDto paymentResponse = new PaymentResponseDto();
+                paymentResponse.setLocalDateTime(p.getLocalDateTime());
+                paymentResponse.setLoan(p.getLoan());
+                paymentResponse.setAmount_Payment(p.getAmount_Payment());
+                paymentResponse.setDebt_total_actually(p.getDebt_total_actually());
+                paymentResponseDto.add(paymentResponse);
+            }
+            loanNew.setPayments(paymentResponseDto);
+            list.add(loanNew);
+        }
         clientResponseDto.setLoans_list(list);
         return clientResponseDto;
     }
